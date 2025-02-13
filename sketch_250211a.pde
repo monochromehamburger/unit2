@@ -41,7 +41,8 @@ void draw(){
   if(treeX<=-200){
     treeX=2200;
   }
-    
+  fill(54,199,242);
+  rect(0,0, 2000, 700);
   cloud(cloudX, cloudY);
   cloud(cloudX2, cloudY2);
   tree(treeX, 700);
