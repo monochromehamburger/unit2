@@ -16,6 +16,8 @@ int cloudY4=100;
 float sunY=0;
 float skyColor=0;
 float vSkyColor=0.2;
+float mountainX=0;
+float mountainX2=2200;
 void setup(){
   size(2000, 1500);
 }
@@ -30,6 +32,8 @@ void draw(){
   treeX-=1.5;
   skyColor+=vSkyColor;
   angle+=vRotate;
+  mountainX-=0.6;
+  mountainX2-=0.6;
   if(angle>=0.3){
     vRotate=-0.05;
   }
@@ -67,19 +71,39 @@ void draw(){
   if(skyColor<=0){
     vSkyColor=0.2;
   }
+  if(mountainX<=-2200){
+    mountainX=2200;
+  }
+  if(mountainX2<=-2200){
+    mountainX2=2200;
+  }
   fill(max(0,54-skyColor),max(0,199-skyColor),max(0,242-skyColor));
   rect(0,0, 2000, 700);
   fill(239, 240, 102);
   rect(800, sunY, 400, 400);
+  fill(200, 200, 200);
+  mountain(mountainX, 500);
+  mountain2(mountainX2, 500);
   fill(91,135,49);
   rect(0, 700, 2000, 1300);
   cloud(cloudX, cloudY);
   cloud(cloudX2, cloudY2);          
   cloud(cloudX3, cloudY3);
   cloud(cloudX4, cloudY4);
-  tree(treeX, 700);
+  tree(treeX, 700);   
   tree(treeX+500, 800);
   creeper(creeperX, creeperY);
+  
+}
+void mountain(float x, int y){
+  for(int i=0;i<11;i++){
+    triangle(x+i*200, y, x+200+i*200, y+300, x-200+i*200, y+300);
+  }
+}
+void mountain2(float x, int y){
+  for(int i=0;i<11;i++){
+    triangle(x+i*200, y, x+200+i*200, y+300, x-200+i*200, y+300);
+  }
 }
 void tree(float x, int y){
   fill(46, 5, 5);
